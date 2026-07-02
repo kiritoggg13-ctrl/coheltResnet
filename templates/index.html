@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Klasifikasi Penyakit Buah Kakao</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <script src="/static/scripts.js" defer></script>
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">Cohelth</div>
+
+        <ul class="nav-menu">
+          <li>
+            <a
+              href="#"
+              class="nav-link active"
+              onclick="showPage(event, 'home')"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" onclick="showPage(event, 'classify')"
+              >Klasifikasi</a
+            >
+          </li>
+          <li>
+            <a href="#" class="nav-link" onclick="showPage(event, 'about')"
+              >About</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Home Page -->
+      <div id="home" class="page active">
+        <div class="hero">
+          <h1>Sistem Klasifikasi Penyakit Buah Kakao</h1>
+          <p>
+            Sistem berbasis AI untuk mengidentifikasi penyakit pada buah kakao
+            berdasarkan citra digital.
+          </p>
+        </div>
+
+        <div class="disease-info">
+          <div class="disease-card">
+            <div class="disease-icon">🦠</div>
+            <h3>Black Pod Rot</h3>
+            <p>
+              Penyakit busuk buah kakao yang disebabkan oleh jamur
+              <i>Phytophthora</i>, ditandai dengan perubahan warna menjadi
+              coklat kehitaman dan pembusukan buah.
+            </p>
+          </div>
+
+          <div class="disease-card">
+            <div class="disease-icon">🐛</div>
+            <h3>Pod Borer (PBK)</h3>
+            <p>
+              Serangan hama penggerek buah kakao yang menyebabkan biji saling
+              melekat, buah mengeras, dan menurunkan kualitas hasil panen.
+            </p>
+          </div>
+
+          <div class="disease-card">
+            <div class="disease-icon">✅</div>
+            <h3>Buah Kakao Sehat</h3>
+            <p>
+              Buah kakao dalam kondisi normal tanpa gejala penyakit atau
+              serangan hama.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Classification Page -->
+      <div id="classify" class="page">
+        <div class="card">
+          <h2 class="page-title">🔍 Klasifikasi Penyakit Buah Kakao</h2>
+
+          <div
+            class="upload-area"
+            onclick="document.getElementById('fileInput').click()"
+          >
+            <div class="upload-icon">📷</div>
+            <div class="upload-text">Klik untuk memilih gambar buah kakao</div>
+          </div>
+
+          <input
+            type="file"
+            id="fileInput"
+            class="file-input"
+            accept="image/*"
+          />
+
+          <div class="preview-container" id="previewContainer">
+            <img id="previewImage" class="preview-image" alt="Preview" />
+
+            <div>
+              <button class="btn" onclick="classifyImage()">
+                🔍 Mulai Klasifikasi
+              </button>
+              <button class="btn btn-reset" onclick="resetUpload()">
+                🔄 Reset
+              </button>
+            </div>
+          </div>
+
+          <div class="result-container" id="resultContainer">
+            <div class="result-title">Hasil Klasifikasi:</div>
+            <div class="result-text" id="resultText"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- About Page -->
+      <div id="about" class="page">
+        <div class="card">
+          <h2 class="page-title">Tentang Cohelth</h2>
+
+          <div class="about-content">
+            <p>
+              CocoaHealth adalah sistem klasifikasi penyakit buah kakao berbasis
+              web yang memanfaatkan model Convolutional Neural Network (CNN)
+              untuk membantu identifikasi kondisi buah kakao.
+            </p>
+
+            <h2>🎯 Tujuan</h2>
+            <p>
+              Membantu petani dan peneliti dalam mendeteksi penyakit buah kakao
+              secara dini untuk meningkatkan kualitas dan produktivitas hasil
+              panen.
+            </p>
+
+            <h2>🔬 Kelas yang Didukung Sistem</h2>
+            <ul>
+              <li>Black Pod Rot</li>
+              <li>Pod Borer (PBK)</li>
+              <li>Buah Kakao Sehat</li>
+            </ul>
+
+            <p>
+              <b>Catatan:</b> Gambar selain buah kakao atau penyakit di luar
+              kelas tersebut akan dikategorikan sebagai objek tidak dikenali
+              (unknown).
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>&copy; 2024 Cohelth. All rights reserved.</footer>
+  </body>
+</html>
