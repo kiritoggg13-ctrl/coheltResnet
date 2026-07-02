@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 import requests
 import os
+# pyrefly: ignore [missing-import]
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
