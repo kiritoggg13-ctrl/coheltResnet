@@ -4,20 +4,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 import requests
-import os
-# pyrefly: ignore [missing-import]
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
 
 app = FastAPI(title="CocoaHealth - Klasifikasi Penyakit Kakao")
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-HF_API_URL = os.getenv("HF_API_URL")
-HF_API_KEY = os.getenv("HF_API_KEY")
+HF_API_URL = "https://geryuga-coheltfastapi.hf.space/predict"
 CONFIDENCE_THRESHOLD = 70.0
 
 DESCRIPTIONS = {
@@ -63,15 +56,8 @@ async def predict(file: UploadFile = File(...)):
         contents = await file.read()
         
         # Forward the request to the Hugging Face API
-        if not HF_API_URL:
-            return JSONResponse(status_code=500, content={"error": "HF_API_URL environment variable is not configured."})
-            
         files = {"file": (file.filename, contents, file.content_type)}
-        headers = {}
-        if HF_API_KEY:
-            headers["Authorization"] = f"Bearer {HF_API_KEY}"
-            
-        response = requests.post(HF_API_URL, files=files, headers=headers)
+        response = requests.post(HF_API_URL, files=files)
         
         result = response.json()
         
